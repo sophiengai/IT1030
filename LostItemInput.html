@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Item Lost</title>
+    <link rel="Style" href="Style.css">
 </head>
 <body>
 
@@ -22,11 +23,13 @@
     <input type="text"  name="LostInputContact" required><br><br>
     <label>Remark:</label>
     <input type="text"  name="LostInputRemark"><br><br>
-    <button type="button"   id="sumbit_button"  onclick="SumbitLostMessage()"></button>
+    <button type="button"   id="sumbit_button"  onclick="SumbitLostMessage()">Sumbit</button>
 </form>
 
 <script>
-
+    function SumbitLostMessage() {
+        alert("Sumbit Successful!")
+    }
 </script>
 
 </body>
