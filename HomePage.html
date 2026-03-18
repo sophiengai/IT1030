@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Page Title</title>
+<title>HomePage</title>
 </head>
 <body>
 <form>
-    <button type="button"   id="FoundPageButton"  onclick="FoundPage()"></button>
-    <button type="button"   id="LostPageButton"  onclick="LostPage()"></button>
+    <button type="button"   id="FoundPageButton"  onclick="FoundPage()">Found Page</button>
+    <button type="button"   id="LostPageButton"  onclick="LostPage()">Lost Page</button>
 </form>
 
 <script>
-    
+    function FoundPage(){
+        window.location.href = "FoundPage.html";
+    }
+    function LostPage(){
+        window.location.href = "LostPage.html";
+    }
 </script>
 
 </body>
