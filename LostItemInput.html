@@ -27,11 +27,11 @@
 </form>
 
 <script>
-    var StorageDescription = localStorage.getItem("StorageDescription")
+    var StorageDescription = sessionStorage.getItem("StorageDescription")
 
     function SumbitLostMessage() {
         var LostDescription = document.getElementById("LostInputDesciption").value;
-        localStorage.setItem("StorageDescription", LostDescription);
+        sessionStorage.setItem("StorageDescription", LostDescription);
         window.location.href = "HomePage.html";
     }
 </script>
