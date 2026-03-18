@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Item Lost</title>
+    <title>Lost Item Input</title>
     <link rel="stylesheet" href="Style.css">
 </head>
 <body>
@@ -10,7 +10,7 @@
     <label for="LostInputImage">Upload images:</label>
     <input type="file" id="LostInputImage"  name="LostInputImage"   accept="image/*"><br><br>
     <label>Description:</label>
-    <input type="text"  name="LostInputDesciption" required><br><br>
+    <input type="text"  id="LostInputDesciption" required><br><br>
     <label>Lost Location:</label>
     <input type="text"  name="LostInputLocation" required><br><br>
     <label>Date:</label>
@@ -27,7 +27,11 @@
 </form>
 
 <script>
+    var StorageDescription = localStorage.getItem("StorageDescription")
+
     function SumbitLostMessage() {
+        var LostDescription = document.getElementById("LostInputDesciption").value;
+        localStorage.setItem("StorageDescription", LostDescription);
         window.location.href = "HomePage.html";
     }
 </script>
