@@ -10,41 +10,54 @@
     <label for="LostInputImage">Upload images:</label>
     <input type="file" id="LostInputImage"  name="LostInputImage"   accept="image/*"><br><br>
     <label for="LostInputDesciption">Description:</label>
-    <input type="text"  id="LostInputDesciption" required><br><br>
+    <input type="text"  id="LostInputDesciption"><br><br>
     <label>Lost Location:</label>
-    <input type="text"  id="LostInputLocation" required><br><br>
+    <input type="text"  id="LostInputLocation"><br><br>
     <label>Date:</label>
-    <input type="date"  id="LostInputDate"  name="LostInputDate" required/><br><br>
+    <input type="date"  id="LostInputDate"  name="LostInputDate"/><br><br>
     <label>Lost Time:</label>
-    <input type="text"  id="LostInputTime" required><br><br>
+    <input type="text"  id="LostInputTime"><br><br>
 
     <label>Item type:</label><br>
-    <input type="checkbox"  id="Toys" required>
+    <input type="checkbox"  id="Toys">
     <label for="Toys">Toys</label><br>
-    <input type="checkbox"  id="Daily Items" required>
+    <input type="checkbox"  id="Daily Items">
     <label for="Daily Items">Daily Items</label><br>
-    <input type="checkbox"  id="Electronic devices" required>
+    <input type="checkbox"  id="Electronic devices">
     <label for="Electronic devices">Electronic devices</label><br>
-    <input type="checkbox"  id="Clothes & Accessories" required>
+    <input type="checkbox"  id="Clothes & Accessories">
     <label for="Clothes & Accessories">Clothes & Accessories</label><br>
-    <input type="checkbox"  id="Others" required>
+    <input type="checkbox"  id="Others">
     <label for="Others">Others</label><br><br>
 
     <label>Contact:</label>
-    <input type="text"  id="LostInputContact" required><br><br>
+    <input type="text"  id="LostInputContact"><br><br>
     <label>Remark:</label>
     <input type="text"  id="LostInputRemark"><br><br>
     <button type="button"   id="sumbit_button"  onclick="SumbitLostMessage()">Sumbit</button>
 </form>
 
 <script>
-
     function SumbitLostMessage() {
+            if (document.getElementById("LostInputDesciption").value === ""); {
+                alert("Desciption is required!"); }
+            elif (document.getElementById("LostInputLocation").value === ""); {
+                alert("Lost location is required!"); }
+            elif (document.getElementById("LostInputDate").value === ""); {
+                alert("Lost date is required!"); }
+            elif (document.getElementById("LostInputTime").value === ""); {
+                alert("Lost time is required!"); }
+            elif (document.getElementById("LostInputContact").value === ""); {
+                alert("Contact is required!"); }
+
         var StorageDescription = document.getElementById("LostInputDesciption").value
         localStorage.setItem("LostInputDesciption", StorageDescription);
         window.location.href = "HomePage.html";
+        }
+
         
-    }
+        
+    
 
 </script>
 
