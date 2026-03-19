@@ -12,11 +12,11 @@
     <label>Description:</label>
     <input type="text"  id="LostInputDesciption" required><br><br>
     <label>Lost Location:</label>
-    <input type="text"  name="LostInputLocation" required><br><br>
+    <input type="text"  id="LostInputLocation" required><br><br>
     <label>Date:</label>
     <input type="date"  id="LostInputDate"  name="LostInputDate" required/><br><br>
     <label>Lost Time:</label>
-    <input type="text"  name="LostInputTime" required><br><br>
+    <input type="text"  id="LostInputTime" required><br><br>
 
     <label>Item type:</label><br>
     <input type="checkbox"  id="Toys" required>
@@ -31,20 +31,19 @@
     <label for="Others">Others</label><br><br>
 
     <label>Contact:</label>
-    <input type="text"  name="LostInputContact" required><br><br>
+    <input type="text"  id="LostInputContact" required><br><br>
     <label>Remark:</label>
-    <input type="text"  name="LostInputRemark"><br><br>
+    <input type="text"  id="LostInputRemark"><br><br>
     <button type="button"   id="sumbit_button"  onclick="SumbitLostMessage()">Sumbit</button>
 </form>
 
 <script>
-    var StorageDescription = sessionStorage.getItem("StorageDescription")
 
     function SumbitLostMessage() {
-        var LostDescription = document.getElementById("LostInputDesciption").value;
-        sessionStorage.setItem("StorageDescription", LostDescription);
+        var StorageDescription = localStorage.setItem("LostInputDesciption", document.getElementById("LostInputDesciption"));
         window.location.href = "HomePage.html";
     }
+
 </script>
 
 </body>
