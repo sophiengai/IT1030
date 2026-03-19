@@ -39,21 +39,22 @@
 
 <script>
     function SumbitLostMessage() {
-            if (document.getElementById("LostInputDesciption").value === ""); {
-                alert("Desciption is required!"); }
-            elif (document.getElementById("LostInputLocation").value === ""); {
-                alert("Lost location is required!"); }
-            elif (document.getElementById("LostInputDate").value === ""); {
-                alert("Lost date is required!"); }
-            elif (document.getElementById("LostInputTime").value === ""); {
-                alert("Lost time is required!"); }
-            elif (document.getElementById("LostInputContact").value === ""); {
-                alert("Contact is required!"); }
-
-        var StorageDescription = document.getElementById("LostInputDesciption").value
-        localStorage.setItem("LostInputDesciption", StorageDescription);
-        window.location.href = "HomePage.html";
+        if (document.getElementById("LostInputDesciption").value === "") {
+            alert("Description is required!");
+        } else if (document.getElementById("LostInputLocation").value === "") {
+            alert("Lost location is required!");
+        } else if (document.getElementById("LostInputDate").value === "") {
+            alert("Lost date is required!");
+        } else if (document.getElementById("LostInputTime").value === "") {
+            alert("Lost time is required!");
+        } else if (document.getElementById("LostInputContact").value === "") {
+            alert("Contact is required!");
+        } else {
+            var StorageDescription = document.getElementById("LostInputDesciption").value;
+            localStorage.setItem("LostInputDesciption", StorageDescription);
+            window.location.href = "HomePage.html";
         }
+    }
 
         
         
