@@ -9,7 +9,7 @@
 <form name="LostItemInput">
     <label for="LostInputImage">Upload images:</label>
     <input type="file" id="LostInputImage"  name="LostInputImage"   accept="image/*"><br><br>
-    <label>Description:</label>
+    <label for="LostInputDesciption">Description:</label>
     <input type="text"  id="LostInputDesciption" required><br><br>
     <label>Lost Location:</label>
     <input type="text"  id="LostInputLocation" required><br><br>
@@ -40,8 +40,10 @@
 <script>
 
     function SumbitLostMessage() {
-        var StorageDescription = localStorage.setItem("LostInputDesciption", document.getElementById("LostInputDesciption"));
+        var StorageDescription = document.getElementById("LostInputDesciption").value
+        localStorage.setItem("LostInputDesciption", StorageDescription);
         window.location.href = "HomePage.html";
+        
     }
 
 </script>

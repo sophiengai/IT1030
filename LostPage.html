@@ -17,8 +17,11 @@
 
 
 <script>
-    function get(){
-        var abc = localStorage.getItem("LostInputDesciption");
+    function get(){        
+        var a = localStorage.getItem("LostInputDesciption");
+        if (savedName) {
+            displayArea.textContent = savedName;
+        }
     }
 </script>
 
