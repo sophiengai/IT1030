@@ -19,12 +19,13 @@
 <script>
 
     function get(){        
-        var a = localStorage.getItem("LostInputDesciption");
-        var card = document.createElement('div');
-        card.innerHTML = `
-            ${a.description}
-        `;
-        
+        var LostDescription = localStorage.getItem("LostInputDesciption");
+        var LostLoctaion = localStorage.getItem("LostInputLocation");
+        var LostDate = localStorage.getItem("LostInputDate");
+        var LostTime = localStorage.getItem("LostInputTime");
+        var LostContact = localStorage.getItem("LostInputContact");
+        var LostRemark = localStorage.getItem("LostInputRemark");
+
     }
 </script>
 
