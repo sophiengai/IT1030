@@ -34,11 +34,11 @@
     <input type="text"  id="FoundInputContact"><br><br>
     <label>Remark:</label>
     <input type="text"  id="FoundInputRemark"><br><br>
-    <button type="button"   id="sumbit_button"  onclick="SumbitLostMessage()">Sumbit</button>
+    <button type="button"   id="sumbit_button"  onclick="SumbitFoundMessage()">Sumbit</button>
 </form>
 
 <script>
-function SumbitLostMessage() {
+function SumbitFoundMessage() {
         if (document.getElementById("FoundInputDesciption").value === "") {
             alert("Description is required!");
         } else if (document.getElementById("FoundInputLocation").value === "") {
@@ -51,7 +51,17 @@ function SumbitLostMessage() {
             alert("Contact is required!");
         } else {
             var StorageDescription = document.getElementById("FoundInputDesciption").value;
+            var StorageLocation = document.getElementById("FoundInputLocation").value;
+            var StorageDate = document.getElementById("FoundInputDate").value;
+            var StorageTime = document.getElementById("FoundInputTime").value;
+            var StorageContact = document.getElementById("FoundInputContact").value;
+            var StorageRemark = document.getElementById("FoundInputRemark").value;
             localStorage.setItem("FoundInputDesciption", StorageDescription);
+            localStorage.setItem("FoundInputLocation", StorageLocation);
+            localStorage.setItem("FoundInputDate", StorageDate);
+            localStorage.setItem("FoundInputTime", StorageTime);
+            localStorage.setItem("FoundInputContact", StorageContact);
+            localStorage.setItem("FoundInputRemark", StorageRemark);
             window.location.href = "HomePage.html";
         }
     }
@@ -64,3 +74,4 @@ function SumbitLostMessage() {
 
 </body>
 </html>
+
