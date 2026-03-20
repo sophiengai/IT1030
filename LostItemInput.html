@@ -51,7 +51,17 @@ function SumbitLostMessage() {
             alert("Contact is required!");
         } else {
             var StorageDescription = document.getElementById("LostInputDesciption").value;
+            var StorageLocation = document.getElementById("LostInputDesciption").value;
+            var StorageDate = document.getElementById("LostInputDate").value;
+            var StorageTime = document.getElementById("LostInputTime").value;
+            var StorageContact = document.getElementById("LostInputContact").value;
+            var StorageRemark = document.getElementById("LostInputRemark").value;
             localStorage.setItem("LostInputDesciption", StorageDescription);
+            localStorage.setItem("LostInputLocation", StorageLocation);
+            localStorage.setItem("LostInputDate", StorageDate);
+            localStorage.setItem("LostInputTime", StorageTime);
+            localStorage.setItem("LostInputContact", StorageContact);
+            localStorage.setItem("LostInputRemark", StorageRemark);
             window.location.href = "HomePage.html";
         }
     }
