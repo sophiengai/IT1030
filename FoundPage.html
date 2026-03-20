@@ -1,21 +1,72 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Found Page</title>
+    <title>Found items List</title>
+    <link rel="stylesheet" href=" style.css">
 </head>
 <body>
+    <div class="container">
+        <a href="FoundItemInput.html" class="back-btn">← Submit New Item</a>
+        <h1>Lost & Found Items</h1>
+        <div class="item-grid" id="itemGrid"></div>
+        <div class="empty-state" id="emptyState" style="display: none;">
+            <h2>No items found</h2>
+            <p>Submit your first lost/found item to see it here!</p>
+        </div>
+    </div>
 
-<form>
-    <button type="button"   id="FoundItemInputButton"  onclick="FoundItemInput()">Post Item Found</button>
-</form>
-
-<script>    
-
-    function FoundItemInput(){
-        window.location.href = "FoundItemInput.html";
-    }
-</script>
-
-
+    <script>
+        function loadFoundItems() {
+            const itemGrid = document.getElementById("itemGrid");
+            const emptyState = document.getElementById("emptyState");
+            itemGrid.innerHTML = "";
+            try {
+                const itemData = localStorage.getItem("FoundItemData");
+                if (!itemData) {
+                    itemGrid.style.display = "none";
+                    emptyState.style.display = "block";
+                    return;
+                }
+                const items = JSON.parse(itemData);
+                const itemList = Array.isArray(items) ? items : [items];
+                if (itemList.length === 0) {
+                    itemGrid.style.display = "none";
+                    emptyState.style.display = "block";
+                    return;
+                }
+                itemList.forEach((item, index) => {
+                    const card = document.createElement("div");
+                    card.className = "item-card";
+                    card.innerHTML = `
+                        <img class="item-image" 
+                             src="${item.imageUrl || 'https://picsum.photos/300/200'}" 
+                             alt="${item.description}">
+                        
+                        <div class="item-info">
+                            <h3>${item.description || 'No description'}</h3>
+                            
+                            <div class="item-details">
+                                <p><span class="label">Type:</span> ${item.itemType?.join(", ") || 'Not specified'}</p>
+                                <p><span class="label">Found At:</span> ${item.location}</p>
+                                <p><span class="label">Date:</span> ${item.date}</p>
+                                <p><span class="label">Time:</span> ${item.time}</p>
+                                <p><span class="label">Contact:</span> ${item.contact}</p>
+                                <p><span class="label">Remark:</span> ${item.remark || 'No remark'}</p>
+                            </div>
+                        </div>
+                    `;
+                    itemGrid.appendChild(card);
+                });
+                itemGrid.style.display = "grid";
+                emptyState.style.display = "none"
+            } catch (error) {
+                console.error("Failed to load items:", error);
+                itemGrid.style.display = "none";
+                emptyState.style.display = "block";
+                emptyState.innerHTML = `<h2>Data Error</h2><p>Failed to load item data, please try again.</p>`;
+            }
+        }
+        window.onload = loadFoundItems;
+    </script>
 </body>
 </html>
