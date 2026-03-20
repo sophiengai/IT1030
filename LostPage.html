@@ -20,7 +20,12 @@
 
     function get(){        
         var a = localStorage.getItem("LostInputDesciption");
-        displayItems(a)
+        var card = document.createElement('div');
+        card.className = 'item-card';
+        card.innerHTML = `
+            <h3>${a.description}</h3>
+        `;
+        
     }
 </script>
 
