@@ -24,7 +24,7 @@
     <input type="checkbox"  id="Daily Items">
     <label for="Daily Items">Daily Items</label><br>
     <input type="checkbox"  id="Electronic devices">
-    <label for="Electronic devices">Electronic devices</label><br>
+    <label for="Electronic Devices">Electronic Devices</label><br>
     <input type="checkbox"  id="Clothes & Accessories">
     <label for="Clothes & Accessories">Clothes & Accessories</label><br>
     <input type="checkbox"  id="Others">
@@ -63,23 +63,29 @@ function SumbitLostMessage() {
             localStorage.setItem("LostInputContact", StorageContact);
             localStorage.setItem("LostInputRemark", StorageRemark);
             
-            var fileInput = document.getElementById("LostInputImage");
-            var file = fileInput.files[0];
-            if (file) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    var imageData = e.target.result;
-                    localStorage.setItem("LostInputImage", imageData);
-                    var img = document.createElement("img");
-                    img.src = imageData;
-                    document.body.appendChild(img);
-                };
-                
+            var ToysisChecked = document.getElementById("Toys").checked;
+            var DailyItemsisChecked = document.getElementById("Daily Items").checked;
+            var ElectronicDevicesisChecked = document.getElementById("Electronic Devices").checked;
+            var ClothesandAccessoriesisChecked = document.getElementById("Clothes & Accessories").checked;
+            var OthersisChecked = document.getElementById("Others").checked;
+
+            if(ToysisChecked){
+                var StorageType = "Toys"
+            } else if (DailyItemsisChecked){
+                var StorageType = "Daily Items"
+            } else if (ElectronicDevicesisChecked){
+                var StorageType = "Electronic Devices"
+            } else if (ClothesandAccessoriesisChecked){
+                var StorageType = "Clothes & Accessories"
+            } else if (OthersisChecked){
+                var StorageType = "Others"
+            } else {
+                var StorageType = "Others"
             }
-            localStorage.setItem("LostInputImage", file);
 
+            localStorage.setItem("LostInputType", StorageType)
 
-            window.location.href = "HomePage.html";
+            
         }
     }
 
