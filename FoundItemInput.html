@@ -1,12 +1,66 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Page Title</title>
+    <title>Found Item Input</title>
+    <link rel="stylesheet" href="Style.css">
 </head>
 <body>
 
-<h1>This is a Heading</h1>
-<p>This is a paragraph.</p>
+<form name="FoundItemInput">
+    <label for="FoundInputImage">Upload images:</label>
+    <input type="file" id="FoundInputImage"  name="FoundInputImage"   accept="image/*"><br><br>
+    <label for="FoundInputDesciption">Description:</label>
+    <input type="text"  id="FoundInputDesciption"><br><br>
+    <label>Found Location:</label>
+    <input type="text"  id="FoundInputLocation"><br><br>
+    <label>Date:</label>
+    <input type="date"  id="FoundInputDate"  name="FoundInputDate"/><br><br>
+    <label>Found Time:</label>
+    <input type="text"  id="FoundInputTime"><br><br>
+
+    <label>Item type:</label><br>
+    <input type="checkbox"  id="Toys">
+    <label for="Toys">Toys</label><br>
+    <input type="checkbox"  id="Daily Items">
+    <label for="Daily Items">Daily Items</label><br>
+    <input type="checkbox"  id="Electronic devices">
+    <label for="Electronic devices">Electronic devices</label><br>
+    <input type="checkbox"  id="Clothes & Accessories">
+    <label for="Clothes & Accessories">Clothes & Accessories</label><br>
+    <input type="checkbox"  id="Others">
+    <label for="Others">Others</label><br><br>
+
+    <label>Contact:</label>
+    <input type="text"  id="FoundInputContact"><br><br>
+    <label>Remark:</label>
+    <input type="text"  id="FoundInputRemark"><br><br>
+    <button type="button"   id="sumbit_button"  onclick="SumbitLostMessage()">Sumbit</button>
+</form>
+
+<script>
+function SumbitLostMessage() {
+        if (document.getElementById("FoundInputDesciption").value === "") {
+            alert("Description is required!");
+        } else if (document.getElementById("FoundInputLocation").value === "") {
+            alert("Found location is required!");
+        } else if (document.getElementById("FoundInputDate").value === "") {
+            alert("Found date is required!");
+        } else if (document.getElementById("FoundInputTime").value === "") {
+            alert("Found time is required!");
+        } else if (document.getElementById("FoundInputContact").value === "") {
+            alert("Contact is required!");
+        } else {
+            var StorageDescription = document.getElementById("FoundInputDesciption").value;
+            localStorage.setItem("FoundInputDesciption", StorageDescription);
+            window.location.href = "HomePage.html";
+        }
+    }
+
+        
+        
+    
+
+</script>
 
 </body>
 </html>
