@@ -3,7 +3,7 @@
 <head>
 <title>Lost Page</title>
 </head>
-<body onload="get()">
+<body>
 
 <form>
     <button type="button"   id="LostItemInputButton"  onclick="LostInputItem()">Post Item Lost</button>
@@ -18,7 +18,7 @@
 
 <script>
 
-    function get(){        
+        
         var LostDescription = localStorage.getItem("LostInputDesciption");
         var LostLoctaion = localStorage.getItem("LostInputLocation");
         var LostDate = localStorage.getItem("LostInputDate");
@@ -26,7 +26,10 @@
         var LostContact = localStorage.getItem("LostInputContact");
         var LostRemark = localStorage.getItem("LostInputRemark");
 
-    }
+        var LostImage = localStorage.getItem("LostInputImage").value
+ 
+        document.readAsDataURL(LostImage);
+        
 </script>
 
 </body>
