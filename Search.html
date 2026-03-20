@@ -1,12 +1,51 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Page Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lost & Found - Search</title>
+    <link rel="stylesheet" href="search.css">
 </head>
 <body>
+    <div class="container">
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search by item description, location, remark...">
+            <button id="searchBtn">Search</button>
+        </div>
 
-<h1>This is a Heading</h1>
-<p>This is a paragraph.</p>
+        <div class="filter-sort">
+            <div class="filter-group">
+                <label>Item Type:</label>
+                <select id="typeFilter">
+                    <option value="all">All Types</option>
+                    <option value="Toys">Toys</option>
+                    <option value="Daily Items">Daily Items</option>
+                    <option value="Electronic devices">Electronic devices</option>
+                    <option value="Clothes & Accessories">Clothes & Accessories</option>
+                    <option value="Others">Others</option>
+                </select>
+            </div>
 
+            <div class="filter-group">
+                <label>Date Range:</label>
+                <input type="date" id="startDate">
+                <span>to</span>
+                <input type="date" id="endDate">
+            </div>
+
+            <div class="sort-group">
+                <label>Sort By:</label>
+                <select id="sortBy">
+                    <option value="newest">Newest First</option>
+                    <option value="oldest">Oldest First</option>
+                    <option value="az">A-Z (Item Name)</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="results" id="results"></div>
+    </div>
+
+    <script src="search.js"></script>
 </body>
 </html>
