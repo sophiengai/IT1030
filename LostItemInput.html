@@ -62,7 +62,17 @@ function SumbitLostMessage() {
             localStorage.setItem("LostInputTime", StorageTime);
             localStorage.setItem("LostInputContact", StorageContact);
             localStorage.setItem("LostInputRemark", StorageRemark);
-            window.location.href = "HomePage.html";
+
+            var input = document.querySelector('input[type="file"]');
+            input.addEventListener('change', () => {
+            var reader = new FileReader();
+                reader.onload = () => {
+                    localStorage.setItem("LostInputImage", reader.result);
+                };
+                reader.readAsDataURL(input.files[0]);
+            });
+
+            
         }
     }
 
