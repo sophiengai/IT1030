@@ -5,6 +5,16 @@
     <link rel="stylesheet" href=" style.css">
 </head>
 <body>
+    <form>
+        <button type="button"   id="FoundItemInputButton"  onclick="FoundItemInput()">Post Item Found</button>
+    </form>
+
+    <script>    
+        function FoundItemInput(){
+            window.location.href = "FoundItemInput.html";
+        }
+    </script>
+
     <div class="container">
         <a href="FoundItemInput.html" class="back-btn">← Submit New Item</a>
         <h1>Lost & Found Items</h1>
@@ -17,25 +27,25 @@
 
     <script>
         function loadFoundItems() {
-            const itemGrid = document.getElementById("itemGrid");
-            const emptyState = document.getElementById("emptyState");
+            var itemGrid = document.getElementById("itemGrid");
+            var emptyState = document.getElementById("emptyState");
             itemGrid.innerHTML = "";
             try {
-                const itemData = localStorage.getItem("FoundItemData");
+                var itemData = localStorage.getItem("FoundItemData");
                 if (!itemData) {
                     itemGrid.style.display = "none";
                     emptyState.style.display = "block";
                     return;
                 }
-                const items = JSON.parse(itemData);
-                const itemList = Array.isArray(items) ? items : [items];
+                var items = JSON.parse(itemData);
+                var itemList = Array.isArray(items) ? items : [items];
                 if (itemList.length === 0) {
                     itemGrid.style.display = "none";
                     emptyState.style.display = "block";
                     return;
                 }
                 itemList.forEach((item, index) => {
-                    const card = document.createElement("div");
+                    var card = document.createElement("div");
                     card.className = "item-card";
                     card.innerHTML = `
                         <img class="item-image" 
@@ -66,7 +76,8 @@
                 emptyState.innerHTML = `<h2>Data Error</h2><p>Failed to load item data, please try again.</p>`;
             }
         }
-        window.onload = loadFoundItems;
+        window.onload = loadFoundItems;    
+
     </script>
 </body>
 </html>
