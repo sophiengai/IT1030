@@ -74,6 +74,6 @@ function renderItems(items) {
             <p><strong>Contact:</strong> ${item.contact}</p>
             <p><strong>Notes:</strong> ${item.remark}</p>
         `;
-        resultsContainer.appendChild(card);
+        resultsContainer.appendChild(card); 
     });
 }

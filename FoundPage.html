@@ -9,7 +9,21 @@
     <button type="button"   id="FoundItemInputButton"  onclick="FoundItemInput()">Post Item Found</button>
 </form>
 
-<script>
+<script>    
+    items.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'item-card';
+        card.innerHTML = `
+            <img src="${item.image}" alt="${item.description}">
+            <h3>${item.description}</h3>
+            <p><strong>Category:</strong> ${item.type}</p>
+            <p><strong>Found at:</strong> ${item.where} (${item.date} ${item.time})</p>
+            <p><strong>Contact:</strong> ${item.contact}</p>
+            <p><strong>Notes:</strong> ${item.remark}</p>
+        `;
+        resultsContainer.appendChild(card);
+    });
+
     function FoundItemInput(){
         window.location.href = "FoundItemInput.html";
     }
