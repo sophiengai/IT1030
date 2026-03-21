@@ -38,7 +38,7 @@
 </form>
 
 <script>
-function SumbitLostMessage() {
+    function SumbitLostMessage() {
         if (document.getElementById("LostInputDesciption").value === "") {
             alert("Description is required!");
         } else if (document.getElementById("LostInputLocation").value === "") {
@@ -63,28 +63,8 @@ function SumbitLostMessage() {
             localStorage.setItem("LostInputContact", StorageContact);
             localStorage.setItem("LostInputRemark", StorageRemark);
             
-            var ToysisChecked = document.getElementById("Toys").checked;
-            var DailyItemsisChecked = document.getElementById("Daily Items").checked;
-            var ElectronicDevicesisChecked = document.getElementById("Electronic Devices").checked;
-            var ClothesandAccessoriesisChecked = document.getElementById("Clothes & Accessories").checked;
-            var OthersisChecked = document.getElementById("Others").checked;
 
-            if(ToysisChecked){
-                var StorageType = "Toys"
-            } else if (DailyItemsisChecked){
-                var StorageType = "Daily Items"
-            } else if (ElectronicDevicesisChecked){
-                var StorageType = "Electronic Devices"
-            } else if (ClothesandAccessoriesisChecked){
-                var StorageType = "Clothes & Accessories"
-            } else if (OthersisChecked){
-                var StorageType = "Others"
-            } else {
-                var StorageType = "Others"
-            }
-
-            localStorage.setItem("LostInputType", StorageType)
-
+            window.location.href = "HomePage.html";
             
         }
     }
