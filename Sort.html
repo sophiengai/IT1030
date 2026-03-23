@@ -5,42 +5,33 @@
     <title>Sorting</title>
 </head>
 <body>
-   <script>
-    /**
- * Sorts an array of lost & found items alphabetically by a specified string field.
- * Safe, case-insensitive, handles missing values, stable sort.
- *
- * @param {Object[]} items - Array of items (same structure as mockItems)
- * @param {string} key - Field to sort by: "description", "where", "type", "contact", etc.
- * @param {"asc"|"desc"} [direction="asc"] - "asc" = A→Z, "desc" = Z→A
- * @returns {Object[]} New sorted array (original array is not changed)
- */
-function sortAlphabetically(items, key, direction = "asc") {
-    // Guard clauses
-    if (!Array.isArray(items) || items.length === 0) {
-        return [];
+<script>
+    
+    function sortAlphabetically(items, key, direction = "asc") {
+
+        if (!Array.isArray(items) || items.length === 0) {
+            return [];
+        }
+
+        if (typeof key !== "string" || !key.trim()) {
+            console.warn("sortAlphabetically: Invalid or empty key. Returning original array.");
+            return [...items];
+        }
+
+        return [...items].sort((a, b) => {
+
+            const valA = (a[key] || "").toString().trim().toLowerCase();
+            const valB = (b[key] || "").toString().trim().toLowerCase();
+
+            if (valA < valB) return direction === "asc" ? -1 : 1;
+            if (valA > valB) return direction === "asc" ? 1 : -1;
+
+            return 0;
+        });
     }
 
-    if (typeof key !== "string" || !key.trim()) {
-        console.warn("sortAlphabetically: Invalid or empty key. Returning original array.");
-        return [...items];
-    }
 
-    return [...items].sort((a, b) => {
-        // Safely get values (missing → empty string)
-        const valA = (a[key] || "").toString().trim().toLowerCase();
-        const valB = (b[key] || "").toString().trim().toLowerCase();
-
-        // Alphabetical comparison
-        if (valA < valB) return direction === "asc" ? -1 : 1;
-        if (valA > valB) return direction === "asc" ? 1 : -1;
-
-        return 0; // equal → stable sort preserves original order
-    });
-}
-
-
-   </script>
+</script>
 
 </body>
 </html>
