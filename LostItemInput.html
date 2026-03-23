@@ -62,9 +62,21 @@
             localStorage.setItem("LostInputTime", StorageTime);
             localStorage.setItem("LostInputContact", StorageContact);
             localStorage.setItem("LostInputRemark", StorageRemark);
-            
 
-            window.location.href = "HomePage.html";
+            var fileInput = document.getElementById("LostInputImage");
+            var file = fileInput.files[0];
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    var imageData = e.target.result;
+                    localStorage.setItem("LostInputImage", imageData);
+                    var img = document.createElement("img");
+                    img.src = imageData;
+                    document.body.appendChild(img);
+                };
+            }
+            reader.readAsDataURL(file);
+
             
         }
     }
