@@ -18,17 +18,11 @@
     <label>Lost Time:</label>
     <input type="text"  id="LostInputTime"><br><br>
 
-    <label>Item type:</label><br>
-    <input type="checkbox"  id="Toys">
-    <label for="Toys">Toys</label><br>
-    <input type="checkbox"  id="Daily Items">
-    <label for="Daily Items">Daily Items</label><br>
-    <input type="checkbox"  id="Electronic devices">
-    <label for="Electronic Devices">Electronic Devices</label><br>
-    <input type="checkbox"  id="Clothes & Accessories">
-    <label for="Clothes & Accessories">Clothes & Accessories</label><br>
-    <input type="checkbox"  id="Others">
-    <label for="Others">Others</label><br><br>
+    <input type="checkbox" name="type" value="Toys"> Toys<br>
+    <input type="checkbox" name="type" value="Daily Items"> Daily Items<br>
+    <input type="checkbox" name="type" value="Electronic Devices"> Electronic Devices<br>
+    <input type="checkbox" name="type" value="Clothes & Accessories"> Clothes & Accessories<br>
+    <input type="checkbox" name="type" value="Others"> Others<br><br>
 
     <label>Contact:</label>
     <input type="text"  id="LostInputContact"><br><br>
@@ -50,12 +44,24 @@
         } else if (document.getElementById("LostInputContact").value === "") {
             alert("Contact is required!");
         } else {
+            var fileInput = document.getElementById("LostInputImage");
+            var file = fileInput.files[0];
+
             var StorageDescription = document.getElementById("LostInputDesciption").value;
             var StorageLocation = document.getElementById("LostInputLocation").value;
             var StorageDate = document.getElementById("LostInputDate").value;
             var StorageTime = document.getElementById("LostInputTime").value;
             var StorageContact = document.getElementById("LostInputContact").value;
             var StorageRemark = document.getElementById("LostInputRemark").value;
+
+            var types = document.querySelectorAll('input[name="type"]:checked');
+            var selectedTypes = [];
+
+            types.forEach(function(item){
+                selectedTypes.push(item.value);
+            });
+
+
             localStorage.setItem("LostInputDesciption", StorageDescription);
             localStorage.setItem("LostInputLocation", StorageLocation);
             localStorage.setItem("LostInputDate", StorageDate);
@@ -63,21 +69,23 @@
             localStorage.setItem("LostInputContact", StorageContact);
             localStorage.setItem("LostInputRemark", StorageRemark);
 
-            var fileInput = document.getElementById("LostInputImage");
-            var file = fileInput.files[0];
+            localStorage.setItem("LostInputType", JSON.stringify(selectedTypes));
+
             if (file) {
                 var reader = new FileReader();
                 reader.onload = function(e) {
                     var imageData = e.target.result;
                     localStorage.setItem("LostInputImage", imageData);
-                    var img = document.createElement("img");
-                    img.src = imageData;
-                    document.body.appendChild(img);
+
+                    window.location.href = "HomePage.html";
                 };
+                reader.readAsDataURL(file);
+            } else{
+                window.location.href = "HomePage.html";
             }
-            reader.readAsDataURL(file);
+            
         }
-        window.location.href = "HomePage.html";
+        
     }
 
         

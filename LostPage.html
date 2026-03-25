@@ -4,6 +4,7 @@
 <title>Lost Page</title>
 </head>
 <body onload="get()">
+<div id="output"></div>
 
 <form>
     <button type="button"   id="LostItemInputButton"  onclick="LostInputItem()">Post Item Lost</button>
@@ -19,9 +20,34 @@
 <script>
 
     function get(){        
-        var a = localStorage.getItem("LostInputDesciption");
-        document.write(a)
-        
+        var get = {
+            image: localStorage.getItem("file"),
+            description: localStorage.getItem("LostInputDesciption"),
+            location: localStorage.getItem("LostInputLocation"),
+            date: localStorage.getItem("LostInputDate"),
+            time: localStorage.getItem("LostInputTime"),
+            contact: localStorage.getItem("LostInputContact"),
+            remark: localStorage.getItem("LostInputRemark")
+        };
+
+        var types = JSON.parse(localStorage.getItem("LostInputType"));
+
+        var typeText = "";
+        if (types) {
+            typeText = types.join(", ");
+        }
+
+        var output = document.getElementById("output")
+        output.innerHTML = `
+            <img scr="${get.file}">
+            <p>Description: ${get.description}</p>
+            <p>Location: ${get.location}</p>
+            <p>Date: ${get.date}</p>
+            <p>Time: ${get.time}</p>
+            <p>Type: ${typeText}</p>
+            <p>Contact: ${get.contact}</p>
+            <p>Remark: ${get.remark}</p>
+        `;
     }
 </script>
 
