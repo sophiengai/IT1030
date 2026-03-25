@@ -43,7 +43,9 @@
 
 <script>
     function SumbitLostMessage() {
-        if (document.getElementById("LostInputDesciption").value === "") {
+        if (document.getElementById("LostInputImage").value === "") {
+            alert("An image is required!");
+        } else if (document.getElementById("LostInputDesciption").value === "") {
             alert("Description is required!");
         } else if (document.getElementById("LostInputLocation").value === "") {
             alert("Lost location is required!");
