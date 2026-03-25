@@ -1,33 +1,18 @@
-// ===== Lost & Found Filter System JavaScript =====
-
 document.addEventListener('DOMContentLoaded', function() {
 
-    const lostItemsDatabase = [];
+    var lostItemsDatabase = [];
 
-    // ========================================
-    // ★ CATEGORY CONFIG — Edit here to customize the 5 categories ★
-    // ========================================
-    // To change a category:
-    //   key   → internal ID (used in database items' "category" field)
-    //   name  → display name shown on the card
-    //   desc  → subtitle shown below the name
-    //   color → theme color (hex) for tag, shadow, etc.
-    //   image → path to the category image
-    // --------------------------------------------------------
-    const CATEGORIES = {
+
+    var CATEGORIES = {
         'toys':        { name: 'Toys',                    desc: 'Toys & Games',        color: '#f59e0b', image: 'images/toys.jpg'        },
         'daily':       { name: 'Daily Items',             desc: 'Everyday Essentials', color: '#10b981', image: 'images/daily.jpg'       },
         'electronics': { name: 'Electronic Devices',      desc: 'Gadgets & Tech',      color: '#3b82f6', image: 'images/electronics.jpg' },
         'clothes':     { name: 'Clothes & Accessories',   desc: 'Fashion & Wearables', color: '#ec4899', image: 'images/clothes.jpg'     },
         'others':      { name: 'Others',                  desc: 'Miscellaneous',       color: '#8b5cf6', image: 'images/others.jpg'      },
     };
-    // --------------------------------------------------------
 
-    // ========================================
-    // Build category grid dynamically from CATEGORIES config
-    // ========================================
     function buildCategoryGrid() {
-        const grid = document.querySelector('.category-grid');
+        var grid = document.querySelector('.category-grid');
         grid.innerHTML = '';
         Object.entries(CATEGORIES).forEach(([key, cat]) => {
             grid.innerHTML += `
@@ -46,63 +31,52 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     buildCategoryGrid();
 
-    // ========================================
-    // Get DOM Elements
-    // ========================================
-    const filterForm = document.getElementById('filterForm');
-    const resetBtn = document.getElementById('resetBtn');
-    const startDateInput = document.getElementById('startDate');
-    const endDateInput = document.getElementById('endDate');
-    const quickDateBtns = document.querySelectorAll('.quick-date-btn');
-    const categoryCheckboxes = document.querySelectorAll('input[name="category"]');
-    const selectedFiltersContainer = document.getElementById('selectedFilters');
-    const resultCount = document.getElementById('resultCount');
-    const resultsList = document.getElementById('resultsList');
-    const matchCount = document.getElementById('matchCount');
-    const resultsSection = document.getElementById('resultsSection');
 
-    // Initialize dates (set max date to today)
-    const today = new Date().toISOString().split('T')[0];
+    var filterForm = document.getElementById('filterForm');
+    var resetBtn = document.getElementById('resetBtn');
+    var startDateInput = document.getElementById('startDate');
+    var endDateInput = document.getElementById('endDate');
+    var quickDateBtns = document.querySelectorAll('.quick-date-btn');
+    var categoryCheckboxes = document.querySelectorAll('input[name="category"]');
+    var selectedFiltersContainer = document.getElementById('selectedFilters');
+    var resultCount = document.getElementById('resultCount');
+    var resultsList = document.getElementById('resultsList');
+    var matchCount = document.getElementById('matchCount');
+    var resultsSection = document.getElementById('resultsSection');
+
+
+    var today = new Date().toISOString().split('T')[0];
     startDateInput.max = today;
     endDateInput.max = today;
 
-    // ========================================
-    // Real filter logic: filter database by category and date
-    // ========================================
+
     function filterItems() {
-        const selectedCategories = Array.from(categoryCheckboxes)
+        var selectedCategories = Array.from(categoryCheckboxes)
             .filter(cb => cb.checked)
             .map(cb => cb.value);
 
-        const startDate = startDateInput.value;
-        const endDate = endDateInput.value;
+        var startDate = startDateInput.value;
+        var endDate = endDateInput.value;
 
         let results = lostItemsDatabase;
 
-        // Filter by category (if selected)
         if (selectedCategories.length > 0) {
             results = results.filter(item => selectedCategories.includes(item.category));
         }
 
-        // Filter by start date
         if (startDate) {
             results = results.filter(item => item.lostDate >= startDate);
         }
 
-        // Filter by end date
         if (endDate) {
             results = results.filter(item => item.lostDate <= endDate);
         }
 
-        // Sort by date descending (most recent first)
         results.sort((a, b) => b.lostDate.localeCompare(a.lostDate));
 
         return results;
     }
 
-    // ========================================
-    // Render search results
-    // ========================================
     function renderResults(items) {
         matchCount.textContent = `${items.length} records found`;
 
@@ -123,9 +97,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         let html = '';
         items.forEach((item, index) => {
-            const color = CATEGORIES[item.category].color;
-            const catName = CATEGORIES[item.category].name;
-            const dateFormatted = formatDate(item.lostDate);
+            var color = CATEGORIES[item.category].color;
+            var catName = CATEGORIES[item.category].name;
+            var dateFormatted = formatDate(item.lostDate);
 
             html += `
                 <div class="result-item" style="animation-delay: ${index * 0.05}s">
@@ -162,16 +136,13 @@ document.addEventListener('DOMContentLoaded', function() {
         resultsList.innerHTML = html;
     }
 
-    // ========================================
-    // Update filter tag display
-    // ========================================
     function updateFilterDisplay() {
-        const selectedCategories = Array.from(categoryCheckboxes)
+        var selectedCategories = Array.from(categoryCheckboxes)
             .filter(cb => cb.checked)
             .map(cb => cb.value);
 
-        const startDate = startDateInput.value;
-        const endDate = endDateInput.value;
+        var startDate = startDateInput.value;
+        var endDate = endDateInput.value;
 
         let filterTags = [];
         let count = 0;
@@ -222,22 +193,22 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function formatDate(dateStr) {
-        const date = new Date(dateStr + 'T00:00:00');
-        const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, '0');
-        const day = String(date.getDate()).padStart(2, '0');
+        var date = new Date(dateStr + 'T00:00:00');
+        var year = date.getFullYear();
+        var month = String(date.getMonth() + 1).padStart(2, '0');
+        var day = String(date.getDate()).padStart(2, '0');
         return `${year}/${month}/${day}`;
     }
 
-    function handleTagRemove(e) {
+    var handleTagRemove(e) {
         e.preventDefault();
         e.stopPropagation();
 
-        const type = this.dataset.type;
-        const value = this.dataset.value;
+        var type = this.dataset.type;
+        var value = this.dataset.value;
 
         if (type === 'category') {
-            const checkbox = document.querySelector(`input[name="category"][value="${value}"]`);
+            var checkbox = document.querySelector(`input[name="category"][value="${value}"]`);
             if (checkbox) {
                 checkbox.checked = false;
             }
@@ -250,12 +221,9 @@ document.addEventListener('DOMContentLoaded', function() {
         updateFilterDisplay();
     }
 
-    // ========================================
-    // Quick date selection
-    // ========================================
     quickDateBtns.forEach(btn => {
         btn.addEventListener('click', function() {
-            const days = parseInt(this.dataset.days);
+            var days = parseInt(this.dataset.days);
 
             quickDateBtns.forEach(b => b.classList.remove('active'));
             this.classList.add('active');
@@ -264,8 +232,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 startDateInput.value = '';
                 endDateInput.value = '';
             } else {
-                const end = new Date();
-                const start = new Date();
+                var end = new Date();
+                var start = new Date();
                 start.setDate(start.getDate() - days);
 
                 endDateInput.value = end.toISOString().split('T')[0];
@@ -276,16 +244,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // ========================================
-    // Listen for category changes
-    // ========================================
     categoryCheckboxes.forEach(checkbox => {
         checkbox.addEventListener('change', updateFilterDisplay);
     });
 
-    // ========================================
-    // Listen for date input changes
-    // ========================================
     startDateInput.addEventListener('change', function() {
         quickDateBtns.forEach(btn => btn.classList.remove('active'));
         if (endDateInput.value && this.value > endDateInput.value) {
@@ -302,9 +264,6 @@ document.addEventListener('DOMContentLoaded', function() {
         updateFilterDisplay();
     });
 
-    // ========================================
-    // Reset filters
-    // ========================================
     resetBtn.addEventListener('click', function() {
         categoryCheckboxes.forEach(cb => cb.checked = false);
         startDateInput.value = '';
@@ -313,29 +272,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
         updateFilterDisplay();
 
-        // Reset results area
         resultsList.innerHTML = '<p class="no-results">Select filters and click "Search" to view results</p>';
         matchCount.textContent = '0 records found';
     });
 
-    // ========================================
-    // Form submit — execute real filtering and render results
-    // ========================================
     filterForm.addEventListener('submit', function(e) {
         e.preventDefault();
 
-        // Execute real filter
-        const results = filterItems();
+        var results = filterItems();
 
-        // Render real results
         renderResults(results);
 
-        // Scroll to results area
         resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 
-    // ========================================
-    // Initialize
-    // ========================================
     updateFilterDisplay();
 });

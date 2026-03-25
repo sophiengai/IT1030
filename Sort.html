@@ -20,8 +20,8 @@
 
         return [...items].sort((a, b) => {
 
-            const valA = (a[key] || "").toString().trim().toLowerCase();
-            const valB = (b[key] || "").toString().trim().toLowerCase();
+            var valA = (a[key] || "").toString().trim().toLowerCase();
+            var valB = (b[key] || "").toString().trim().toLowerCase();
 
             if (valA < valB) return direction === "asc" ? -1 : 1;
             if (valA > valB) return direction === "asc" ? 1 : -1;
