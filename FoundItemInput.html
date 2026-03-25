@@ -48,37 +48,61 @@
 </script>
 
 <script>
-function SumbitFoundMessage() {
-        if (document.getElementById("FoundInputDesciption").value === "") {
+    function SumbitLostMessage() {
+        if (document.getElementById("FoundInputImage").value === "") {
+            alert("An image is required!");
+        } else if (document.getElementById("FoundInputDesciption").value === "") {
             alert("Description is required!");
         } else if (document.getElementById("FoundInputLocation").value === "") {
-            alert("Found location is required!");
+            alert("Lost location is required!");
         } else if (document.getElementById("FoundInputDate").value === "") {
-            alert("Found date is required!");
+            alert("Lost date is required!");
         } else if (document.getElementById("FoundInputTime").value === "") {
-            alert("Found time is required!");
+            alert("Lost time is required!");
         } else if (document.getElementById("FoundInputContact").value === "") {
             alert("Contact is required!");
         } else {
+            var fileInput = document.getElementById("FoundInputImage");
+            var file = fileInput.files[0];
+
             var StorageDescription = document.getElementById("FoundInputDesciption").value;
             var StorageLocation = document.getElementById("FoundInputLocation").value;
             var StorageDate = document.getElementById("FoundInputDate").value;
             var StorageTime = document.getElementById("FoundInputTime").value;
             var StorageContact = document.getElementById("FoundInputContact").value;
             var StorageRemark = document.getElementById("FoundInputRemark").value;
+
+            var types = document.querySelectorAll('input[name="type"]:checked');
+            var selectedTypes = [];
+
+            types.forEach(function(item){
+                selectedTypes.push(item.value);
+            });
+
+
             localStorage.setItem("FoundInputDesciption", StorageDescription);
             localStorage.setItem("FoundInputLocation", StorageLocation);
             localStorage.setItem("FoundInputDate", StorageDate);
             localStorage.setItem("FoundInputTime", StorageTime);
             localStorage.setItem("FoundInputContact", StorageContact);
             localStorage.setItem("FoundInputRemark", StorageRemark);
-            window.location.href = "HomePage.html";
-        }
-    }
 
-        
-        
-    
+            localStorage.setItem("FoundInputType", JSON.stringify(selectedTypes));
+
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    var imageData = e.target.result;
+                    localStorage.setItem("FoundInputImage", imageData);
+
+                    window.location.href = "HomePage.html";
+                };
+                reader.readAsDataURL(file);
+            }
+
+        }
+            
+    }
 
 </script>
 
