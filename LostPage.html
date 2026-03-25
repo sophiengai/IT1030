@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Lost Page</title>
+    <title>Lost Page</title>
+    <link rel="stylesheet" href="Style.css">
 </head>
 <body onload="get()">
 <div id="output"></div>
@@ -9,7 +10,6 @@
 <form>
     <button type="button"   id="LostItemInputButton"  onclick="LostInputItem()">Post Item Lost</button>
     <button type="button"   id="HomePageButton"  onclick="HomePage()">Home Page</button>
-    <button type="button"   id="Sort"  onclick="sortAlphabetically()">Sorting</button>
 </form>
 
 <script>
@@ -19,32 +19,6 @@
     function HomePage(){
         window.location.href = "HomePage.html";
     }
-</script>
-
-<script>
-    function sortAlphabetically(items, key, direction = "asc") {
-
-        if (!Array.isArray(items) || items.length === 0) {
-            return [];
-        }
-
-        if (typeof key !== "string" || !key.trim()) {
-            console.warn("sortAlphabetically: Invalid or empty key. Returning original array.");
-            return [...items];
-        }
-
-        return [...items].sort((a, b) => {
-
-            const valA = (a[key] || "").toString().trim().toLowerCase();
-            const valB = (b[key] || "").toString().trim().toLowerCase();
-
-            if (valA < valB) return direction === "asc" ? -1 : 1;
-            if (valA > valB) return direction === "asc" ? 1 : -1;
-
-            return 0;
-        });
-    }
-
 </script>
 
 <script>

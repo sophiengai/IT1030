@@ -4,8 +4,9 @@
     <title>Found items List</title>
     <link rel="stylesheet" href="Style.css">
 </head>
-<body>
-    
+<body onload="get()">
+<div id="output"></div>
+
 <form>
     <button type="button"   id="FoundItemInputButton"  onclick="FoundItemInput()">Post Item Found</button>
     <button type="button"   id="HomePageButton"  onclick="HomePage()">Home Page</button>
@@ -21,58 +22,37 @@
 </script>
 
 <script>
-    function loadFoundItems() {
-        var itemGrid = document.getElementById("itemGrid");
-        var emptyState = document.getElementById("emptyState");
-        itemGrid.innerHTML = "";
-        try {
-            var itemData = localStorage.getItem("FoundItemData");
-            if (!itemData) {
-                itemGrid.style.display = "none";
-                emptyState.style.display = "block";
-                return;
-            }
-            var items = JSON.parse(itemData);
-            var itemList = Array.isArray(items) ? items : [items];
-            if (itemList.length === 0) {
-                itemGrid.style.display = "none";
-                emptyState.style.display = "block";
-                return;
-            }
-            itemList.forEach((item, index) => {
-                var card = document.createElement("div");
-                card.className = "item-card";
-                card.innerHTML = `
-                    <img class="item-image" 
-                            src="${item.imageUrl || 'https://picsum.photos/300/200'}" 
-                            alt="${item.description}">
-                    
-                    <div class="item-info">
-                        <h3>${item.description || 'No description'}</h3>
-                        
-                        <div class="item-details">
-                            <p><span class="label">Type:</span> ${item.itemType?.join(", ") || 'Not specified'}</p>
-                            <p><span class="label">Found At:</span> ${item.location}</p>
-                            <p><span class="label">Date:</span> ${item.date}</p>
-                            <p><span class="label">Time:</span> ${item.time}</p>
-                            <p><span class="label">Contact:</span> ${item.contact}</p>
-                            <p><span class="label">Remark:</span> ${item.remark || 'No remark'}</p>
-                        </div>
-                    </div>
-                `;
-                itemGrid.appendChild(card);
-            });
-            itemGrid.style.display = "grid";
-            emptyState.style.display = "none"
-        } catch (error) {
-            console.error("Failed to load items:", error);
-            itemGrid.style.display = "none";
-            emptyState.style.display = "block";
-            emptyState.innerHTML = `<h2>Data Error</h2><p>Failed to load item data, please try again.</p>`;
-        }
-    }
-    window.onload = loadFoundItems;    
+        function get(){  
+        var imgData = localStorage.getItem("FoundInputImage");
+        
+        var get = {
+            description: localStorage.getItem("FoundInputDesciption"),
+            location: localStorage.getItem("FoundInputLocation"),
+            date: localStorage.getItem("FoundInputDate"),
+            time: localStorage.getItem("FoundInputTime"),
+            contact: localStorage.getItem("FoundInputContact"),
+            remark: localStorage.getItem("FoundInputRemark")
+        };
 
+        var types = JSON.parse(localStorage.getItem("FoundInputType"));
+
+        var typeText = "";
+        if (types) {
+            typeText = types.join(", ");
+        }
+
+        var output = document.getElementById("output")
+        output.innerHTML = `
+            <img src="${imgData}" width="200">;
+            <p>Description: ${get.description}</p>
+            <p>Location: ${get.location}</p>
+            <p>Date: ${get.date}</p>
+            <p>Time: ${get.time}</p>
+            <p>Type: ${typeText}</p>
+            <p>Contact: ${get.contact}</p>
+            <p>Remark: ${get.remark}</p>
+        `;
+    }
 </script>
 </body>
 </html>
