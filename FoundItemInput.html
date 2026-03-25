@@ -6,6 +6,10 @@
 </head>
 <body>
 
+<form>
+    <button type="button"   id="FoundPageButton"  onclick="FoundPage()">Found Page</button>
+</form>
+
 <form name="FoundItemInput">
     <label for="FoundInputImage">Upload images:</label>
     <input type="file" id="FoundInputImage"  name="FoundInputImage"   accept="image/*"><br><br>
@@ -36,6 +40,12 @@
     <input type="text"  id="FoundInputRemark"><br><br>
     <button type="button"   id="sumbit_button"  onclick="SumbitFoundMessage()">Sumbit</button>
 </form>
+
+<script>
+    function FoundPage(){
+        window.location.href = "FoundPage.html";
+    }
+</script>
 
 <script>
 function SumbitFoundMessage() {

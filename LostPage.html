@@ -8,20 +8,24 @@
 
 <form>
     <button type="button"   id="LostItemInputButton"  onclick="LostInputItem()">Post Item Lost</button>
+    <button type="button"   id="HomePageButton"  onclick="HomePage()">Home Page</button>
 </form>
 
 <script>
     function LostInputItem(){
         window.location.href = "LostItemInput.html";
     }
+    function HomePage(){
+        window.location.href = "HomePage.html";
+    }
 </script>
 
 
 <script>
-
-    function get(){        
+    function get(){  
+        var imgData = localStorage.getItem("LostInputImage");
+        
         var get = {
-            image: localStorage.getItem("file"),
             description: localStorage.getItem("LostInputDesciption"),
             location: localStorage.getItem("LostInputLocation"),
             date: localStorage.getItem("LostInputDate"),
@@ -39,7 +43,7 @@
 
         var output = document.getElementById("output")
         output.innerHTML = `
-            <img scr="${get.file}">
+            <img src="${imgData}" width="200">;
             <p>Description: ${get.description}</p>
             <p>Location: ${get.location}</p>
             <p>Date: ${get.date}</p>

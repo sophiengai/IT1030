@@ -6,6 +6,10 @@
 </head>
 <body>
 
+<form>
+    <button type="button"   id="LostPageButton"  onclick="LostPage()">Lost Page</button>
+</form>
+
 <form name="LostItemInput">
     <label for="LostInputImage">Upload images:</label>
     <input type="file" id="LostInputImage"  name="LostInputImage"   accept="image/*"><br><br>
@@ -30,6 +34,12 @@
     <input type="text"  id="LostInputRemark"><br><br>
     <button type="button"   id="sumbit_button"  onclick="SumbitLostMessage()">Sumbit</button>
 </form>
+
+<script>
+    function LostPage(){
+        window.location.href = "LostPage.html";
+    }
+</script>
 
 <script>
     function SumbitLostMessage() {
