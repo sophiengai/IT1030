@@ -8,6 +8,44 @@
 <div id="output"></div>
 
 <form>
+    <div class="container">
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search">
+            <button id="searchBtn">Search</button>
+        </div>
+
+        <div class="filter-sort">
+            <div class="filter-group">
+                <label>Item Type:</label>
+                <select id="typeFilter">
+                    <option value="all">All Types</option>
+                    <option value="Toys">Toys</option>
+                    <option value="Daily Items">Daily Items</option>
+                    <option value="Electronic devices">Electronic devices</option>
+                    <option value="Clothes & Accessories">Clothes & Accessories</option>
+                    <option value="Others">Others</option>
+                </select>
+            </div>
+
+            <div class="filSter-group">
+                <label>Date Range:</label>
+                <input type="date" id="startDate">
+                <span>to</span>
+                <input type="date" id="endDate">
+            </div>
+
+            <div class="sort-group">
+                <label>Sort By:</label>
+                <select id="sortBy">
+                    <option value="newest">Newest First</option>
+                    <option value="oldest">Oldest First</option>
+                    <option value="az">A-Z (Item Name)</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="results" id="results"></div>
+    </div>
     <button type="button"   id="FoundItemInputButton"  onclick="FoundItemInput()">Post Item Found</button>
     <button type="button"   id="HomePageButton"  onclick="HomePage()">Home Page</button>
 </form>
